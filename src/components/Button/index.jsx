@@ -3,8 +3,9 @@ import React from 'react';
 import { Container } from './styles';
 
 function Button(props) {
-  return <Container onClick={e => props.click && props.click(props.label)}>
-    {props.label}
+  return <Container double={props.double} triple={props.triple} operation={props.operation}
+      onClick={e => props.click && props.click(props.label)}>
+      {props.label}
     </Container>
 }
 

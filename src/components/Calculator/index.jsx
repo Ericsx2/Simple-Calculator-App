@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Container } from './styles';
 import Display from '../Display';
 import Button from '../Button';
 
+const initialState = {
+  displayValue: '0',
+  clearDisplay: false,
+  operation: null,
+  values: [0, 0],
+  current: 0
+}
+
 function Calculator() {
 
+  const [state, setState] = useState(initialState)
+
   function clearMemory() {
-    console.log('Limpar')
+    setState(initialState)
   }
 
   function setOperation(n) {
@@ -21,7 +31,7 @@ function Calculator() {
 
 
   return <Container>
-    <Display value="100"/>
+    <Display value={state.displayValue}/>
     <Button label="AC" click={() => clearMemory()} triple/>
     <Button label="/" click={n => setOperation(n)} operation/>
     <Button label="7" click={n => addDigit(n)} />
