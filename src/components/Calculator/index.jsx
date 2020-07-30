@@ -14,7 +14,7 @@ const initialState = {
 
 function Calculator() {
 
-  const [state, setState] = useState(initialState)
+  const [state, setState] = useState({...initialState})
   
   function clearMemory() {
     setState(initialState)
@@ -22,7 +22,8 @@ function Calculator() {
 
   function setOperation(n) {
     if ( state.current === 0) {
-      setState({operation: n, current: 1, clearDisplay: true})
+      const values = state.values
+      setState({...state, operation: n, current: 1, clearDisplay: true, values})
     }else{
       const equals = n === '='
       const currentOperation = state.operation
@@ -61,21 +62,19 @@ function Calculator() {
     if (n === '.' && state.displayValue.includes('.')){
       return
     }
-    
+
     let values = [...state.values]
     const i = state.current
-    console.log(i)
-
+    
     const clearDisplay = state.displayValue === '0'
-      || state.clearDisplay
+    || state.clearDisplay
     const currentValue = clearDisplay ? '' : state.displayValue
     const displayValue = currentValue + n
-
+    
     values[i] = parseFloat(displayValue)
-
-    setState({displayValue, clearDisplay: false, values})
-
-    console.log(values)
+    
+    setState({...state, displayValue, clearDisplay: false, values, current: i})
+    
   }
 
 
