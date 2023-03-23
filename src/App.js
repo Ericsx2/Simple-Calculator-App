@@ -8,9 +8,6 @@ function App() {
     <>
       <Calculator />
       <GlobalStyles />
-      <div>
-        <h1>Alteração</h1>
-      </div>
     </>
   );
 }
